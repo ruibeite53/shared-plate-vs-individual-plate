@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>共盘与分餐：中西餐桌上的价值观</title>
+<style>
+/* SECTION: base */
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#12100e; --bg2:#1b1815; --card:#211d19; --line:#37312a;
+  --ink:#efe7db; --ink2:#b8ad9c; --ink3:#8a8072;
+  --cn:#e05a3a; --cn-soft:#4a241c; --west:#5b8dd6; --west-soft:#1e2c42;
+  --gold:#d9a441;
+}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Noto Serif SC","Songti SC","SimSun",Georgia,serif;line-height:1.75;font-size:16px}
+h1,h2,h3,h4{line-height:1.35;margin:0 0 .5em}
+p{margin:.4em 0 .9em}
+a{color:var(--gold)}
+img{max-width:100%;display:block}
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(16px,4vw,32px)}
+.sans{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+/* SECTION: nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(18,16,14,.92);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;flex-wrap:wrap;gap:4px 6px;align-items:center;padding-top:10px;padding-bottom:10px}
+nav .brand{font-weight:700;color:var(--gold);margin-right:10px;white-space:nowrap}
+nav a{color:var(--ink2);text-decoration:none;font-size:14px;padding:8px 10px;border-radius:8px;
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+nav a:hover{color:var(--ink);background:var(--bg2)}
+/* SECTION: hero */
+header.hero{padding:clamp(48px,9vw,110px) 0 clamp(36px,6vw,70px);
+  background:radial-gradient(1200px 500px at 20% -10%,rgba(224,90,58,.16),transparent 60%),
+             radial-gradient(1000px 460px at 85% 0%,rgba(91,141,214,.14),transparent 60%),var(--bg)}
+.hero .tag{display:inline-block;font-size:13px;letter-spacing:.12em;color:var(--gold);
+  border:1px solid var(--line);border-radius:999px;padding:6px 14px;margin-bottom:18px;
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+.hero h1{font-size:clamp(30px,6vw,54px);letter-spacing:.04em}
+.hero h1 .vs{color:var(--gold);font-style:italic}
+.hero .en{color:var(--ink2);font-size:clamp(15px,2.4vw,20px);font-style:italic;margin-top:6px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:26px;color:var(--ink2);font-size:14px;
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+.hero .meta b{color:var(--ink)}
+.hero .lede{max-width:760px;margin-top:26px;color:var(--ink2)}
+.hero .lede b{color:var(--ink)}
+.duo{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+.duo .chip{flex:1 1 260px;min-width:0;border-radius:14px;padding:16px 18px;border:1px solid var(--line)}
+.duo .chip.cn{background:linear-gradient(135deg,var(--cn-soft),var(--card))}
+.duo .chip.west{background:linear-gradient(135deg,var(--west-soft),var(--card))}
+.duo .chip h3{font-size:17px;margin-bottom:4px}
+.duo .chip.cn h3{color:#ff9d82}.duo .chip.west h3{color:#9cc0f0}
+.duo .chip p{margin:0;color:var(--ink2);font-size:14px}
+/* SECTION: sections */
+section{padding:clamp(40px,7vw,72px) 0;border-top:1px solid var(--line)}
+.kicker{font-size:13px;letter-spacing:.2em;color:var(--gold);margin-bottom:8px;
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+section h2{font-size:clamp(24px,4vw,34px)}
+.sub{color:var(--ink2);max-width:820px}
+/* SECTION: pair */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+@media (max-width:820px){.pair{grid-template-columns:1fr}}
+.film{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  display:flex;flex-direction:column;min-width:0}
+.film .head{padding:16px 18px 12px;border-bottom:1px solid var(--line)}
+.film .side{display:inline-block;font-size:12px;letter-spacing:.14em;border-radius:6px;padding:3px 9px;
+  margin-bottom:8px;font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+.film.cn .side{background:var(--cn-soft);color:#ff9d82}
+.film.west .side{background:var(--west-soft);color:#9cc0f0}
+.film h3{font-size:19px;margin-bottom:2px}
+.film .info{color:var(--ink3);font-size:13px;font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+.still{position:relative;aspect-ratio:16/9;background:linear-gradient(135deg,#2a241e,#191512);overflow:hidden}
+.still img{width:100%;height:100%;object-fit:cover}
+.still .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  color:var(--ink3);font-size:14px;letter-spacing:.2em}
+.film .body{padding:16px 18px;display:flex;flex-direction:column;gap:12px;flex:1}
+.scene{font-size:14.5px;color:var(--ink2)}
+.scene b{color:var(--ink)}
+.playerbox{border:1px dashed var(--line);border-radius:12px;overflow:hidden;background:#0d0b09}
+.playerbox .hint{padding:14px 16px;font-size:13.5px;color:var(--ink2);
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+.playerbox iframe{width:100%;aspect-ratio:16/9;border:0;display:block}
+.btnrow{display:flex;flex-wrap:wrap;gap:8px}
+button.play{cursor:pointer;border:0;border-radius:10px;padding:11px 16px;font-size:14px;min-height:44px;
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;color:#fff}
+.film.cn button.play{background:var(--cn)}
+.film.west button.play{background:#3f6db3}
+button.play:hover{filter:brightness(1.12)}
+a.watch{display:inline-flex;align-items:center;min-height:44px;padding:10px 14px;border-radius:10px;
+  border:1px solid var(--line);color:var(--ink2);text-decoration:none;font-size:14px;
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+a.watch:hover{color:var(--ink);border-color:var(--ink3)}
+.note{font-size:12.5px;color:var(--ink3);font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+/* SECTION: values */
+.values{margin-top:22px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.values h4{color:var(--gold);font-size:15px;letter-spacing:.1em;margin-bottom:10px;
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+.values ul{margin:0;padding-left:0;list-style:none;display:grid;gap:8px}
+.values li{display:grid;grid-template-columns:96px 1fr;gap:10px;font-size:14.5px;color:var(--ink2)}
+.values li .dim{color:var(--ink);font-weight:700}
+@media (max-width:560px){.values li{grid-template-columns:1fr}}
+/* SECTION: table */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;margin-top:22px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px}
+th,td{padding:12px 16px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--bg2);color:var(--gold);font-size:13.5px;letter-spacing:.08em;
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+td.dim{color:var(--ink);font-weight:700;white-space:nowrap}
+td.cnc{color:#f0b7a6}td.wc{color:#a9c6ec}
+tr:last-child td{border-bottom:0}
+/* SECTION: conclusion & refs */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;min-width:0}
+.card h3{font-size:17px;color:var(--gold)}
+.card p{color:var(--ink2);font-size:14.5px;margin-bottom:0}
+ol.refs{color:var(--ink2);font-size:14px;padding-left:22px;display:grid;gap:8px;
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+ol.refs a{word-break:break-all}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--ink3);font-size:13px;
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+.caveat{margin-top:18px;font-size:13px;color:var(--ink3);border-left:3px solid var(--gold);padding-left:12px}
+</style>
+</head>
+<body>
+<!-- SECTION: nav -->
+<nav>
+  <div class="wrap sans">
+    <span class="brand">共盘 × 分餐</span>
+    <a href="#intro">导览</a>
+    <a href="#pair1">对比一 · 合餐与分餐</a>
+    <a href="#pair2">对比二 · 人情与个体</a>
+    <a href="#matrix">价值观对照</a>
+    <a href="#conclusion">结论</a>
+    <a href="#refs">参考来源</a>
+  </div>
+</nav>
+
+<!-- SECTION: hero -->
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">跨文化交际 · 课题展示 · 网页形式</span>
+    <h1>共盘 <span class="vs">vs</span> 分餐</h1>
+    <p class="en">Shared Plate vs Individual Plate: Values Reflected in Chinese and Western Eating</p>
+    <div class="meta">
+      <span>成员 <b>张越扬、尚裕兴</b></span>
+    </div>
+    <p class="lede">一张圆桌、几双伸向同一盘菜的筷子；一方长桌、每人面前一份按位上的菜。
+      <b>吃饭的方式，从来不只是吃饭。</b>本页面选取两组经典电影片段并排对照——李安的《饮食男女》《喜宴》与
+      丹麦的《巴贝特之宴》、好莱坞的《当哈利遇到莎莉》——从银幕上的餐桌出发，讨论中西饮食方式背后
+      <b>集体与个体、人情与边界</b>的价值观差异。</p>
+    <div class="duo">
+      <div class="chip cn"><h3>中式 · 共盘</h3><p>菜肴居中、围坐共享、互相夹菜；圆桌象征团圆与"和"，餐桌是关系的纽带。</p></div>
+      <div class="chip west"><h3>西式 · 分餐</h3><p>按位上菜、各食其盘、自主选择；餐盘划定个体边界，体现独立与个人空间。</p></div>
+    </div>
+  </div>
+</header>
+
+<!-- SECTION: intro -->
+<section id="intro">
+  <div class="wrap">
+    <p class="kicker">INTRODUCTION · 导览</p>
+    <h2>为什么用电影看餐桌？</h2>
+    <p class="sub">饮食方式是文化价值观最日常的载体。中国长期延续的合餐制与西方主流的分餐制，
+      分别呼应着"群体优先、以和为贵"与"个体独立、尊重边界"两种取向（光明网访谈，2024）。
+      电影把这两种取向拍成了可见的场景：谁坐在主位、菜放在哪里、谁给谁夹菜、谁决定吃什么——
+      每一个镜头细节都是价值观的注脚。下面两组对比，每组左右并排呈现中方与西方片段，
+      点击"播放片段"即可观看，再对照下方的价值观解读。</p>
+    <p class="sub">一个先要破除的刻板印象：<b>分餐并非西方专属，合餐也非中国自古如此。</b>
+      中国商周时期即行"筵席"分餐，合餐制到唐宋才普及；而古罗马与中世纪欧洲曾长期合餐，
+      分餐在近代欧洲才成为主流（人民论坛网，2020；中国社会科学网，2020）。
+      因此本页的对比是"当代主流饮食方式"的对比，而非"中西天生不同"的断言。</p>
+  </div>
+</section>
+
+<!-- SECTION: pair1 -->
+<section id="pair1">
+  <div class="wrap">
+    <p class="kicker">COMPARISON 01 · 对比一</p>
+    <h2>合餐制 vs 分餐制：一桌菜，还是每人一份？</h2>
+    <p class="sub">中方片段看"菜如何把一家人聚到同一张桌上"，西方片段看"菜如何按位、按序送到每个人面前"。</p>
+    <div class="pair">
+      <!-- film cn1 -->
+      <article class="film cn">
+        <div class="head">
+          <span class="side">中方片段</span>
+          <h3>《饮食男女》Eat Drink Man Woman</h3>
+          <p class="info">李安 · 1994 · 中国台湾 · 开场烹饪蒙太奇与周日家宴</p>
+        </div>
+        <div class="still">
+          <span class="ph">剧 照</span>
+          <img alt="《饮食男女》剧照：老朱与三个女儿围坐圆桌家宴" data-image="https://agent.qianwen.com/service/9bc9d2b0-ffe7-4f/a6bb308d0e1fa97696b473f3a970c831">
+        </div>
+        <div class="body">
+          <p class="scene"><b>场景：</b>开场约四分钟、几乎零台词的烹饪蒙太奇——抓鱼、去鳞、片肉、过油、上屉，
+            十几道宴席菜一气呵成；随后三个女儿围坐圆桌，父亲居主位，菜肴摆满桌面共同享用。
+            每周日这顿家宴，是这个家"雷打不动的仪式"，也是全片六次家宴推动叙事的起点。</p>
+          <div class="playerbox" data-bvid="BV1G3411V78K" data-fallback="https://www.bilibili.com/video/BV1G3411V78K">
+            <p class="hint">片段：开场烹饪段落（含逐镜头解说，约 9 分钟）。点击按钮在页内播放；若平台限制嵌入，请用"新窗口观看"。</p>
+          </div>
+          <div class="btnrow">
+            <button class="play" type="button">播放片段</button>
+            <a class="watch" href="https://www.bilibili.com/video/BV1G3411V78K" target="_blank" rel="noopener">新窗口观看</a>
+            <a class="watch" href="https://v.qq.com/x/cover/y247z6cfcao03wl/h0518eebtth.html" target="_blank" rel="noopener">备用源 · 腾讯视频</a>
+          </div>
+          <p class="note">嵌入播放受平台与网络限制；课堂展示建议提前打开备用源确认。</p>
+        </div>
+      </article>
+      <!-- film west1 -->
+      <article class="film west">
+        <div class="head">
+          <span class="side">西方片段</span>
+          <h3>《巴贝特之宴》Babette's Feast</h3>
+          <p class="info">加布里埃尔·阿克谢 · 1987 · 丹麦 · 法式盛宴逐道上菜段落</p>
+        </div>
+        <div class="still">
+          <span class="ph">剧 照</span>
+          <img alt="《巴贝特之宴》剧照：烛光下的法式宴席餐桌" data-image="https://agent.qianwen.com/service/d7d3ba89-98ef-4a/a5c07954d6d3bc0dbf50ef1b86174bb8">
+        </div>
+        <div class="body">
+          <p class="scene"><b>场景：</b>流亡丹麦的巴黎名厨巴贝特花光一万法郎彩票奖金，为清教徒村庄置办一席正宗法餐：
+            海龟汤配雪利酒、比利尼饼配香槟、酥皮鹌鹑……七道菜<b>按位逐道上菜、每道配不同的酒</b>，
+            由侍者往返厨房与长桌之间分送；巴贝特本人全程留在厨房。获第 60 届奥斯卡最佳外语片。</p>
+          <div class="playerbox" data-ytid="fcIAtfaLOh8" data-fallback="https://www.youtube.com/watch?v=fcIAtfaLOh8">
+            <p class="hint">片段：影片食物场景剪辑（YouTube，英语）。若无法加载，请用"新窗口观看"或 B 站正版全片。</p>
+          </div>
+          <div class="btnrow">
+            <button class="play" type="button">播放片段</button>
+            <a class="watch" href="https://www.youtube.com/watch?v=fcIAtfaLOh8" target="_blank" rel="noopener">新窗口观看</a>
+            <a class="watch" href="https://www.bilibili.com/bangumi/play/ep329590" target="_blank" rel="noopener">备用源 · B站正版全片</a>
+          </div>
+          <p class="note">B 站正版全片可定位至后半段盛宴部分对照观看。</p>
+        </div>
+      </article>
+    </div>
+    <div class="values">
+      <h4>价值观对照 · 这一组看什么</h4>
+      <ul>
+        <li><span class="dim">食物归属</span><span>中式：菜属于"这桌人"，共享即亲密；西式：菜属于"这个位"，按份即边界。</span></li>
+        <li><span class="dim">空间象征</span><span>圆桌无棱角、目光交汇，象征团圆与"和"；长桌按位排席、逐道上菜，强调秩序与个体空间。</span></li>
+        <li><span class="dim">情感表达</span><span>老朱把说不出口的话做进一桌菜里，"菜是台词"；巴贝特把感激与艺术做进每人盘中，馈赠同样深情——方式不同，情意相通。</span></li>
+        <li><span class="dim">历史提醒</span><span>中国商周本行分餐、唐宋转向合餐；欧洲近代才普及分餐。差异是历史演变的结果，不是民族天性。</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: pair2 -->
+<section id="pair2">
+  <div class="wrap">
+    <p class="kicker">COMPARISON 02 · 对比二</p>
+    <h2>人情宴席 vs 个体自主：谁决定这顿饭怎么吃？</h2>
+    <p class="sub">中方片段看"宴席如何成为群体仪式"，西方片段看"一个人如何对自己的餐盘做主"。</p>
+    <div class="pair">
+      <!-- film cn2 -->
+      <article class="film cn">
+        <div class="head">
+          <span class="side">中方片段</span>
+          <h3>《喜宴》The Wedding Banquet</h3>
+          <p class="info">李安 · 1993 · 中国台湾／美国 · 中式婚宴酒席段落</p>
+        </div>
+        <div class="still">
+          <span class="ph">剧 照</span>
+          <img alt="《喜宴》剧照：中式婚宴酒席场景" data-image="https://agent.qianwen.com/service/ca0c3f6c-dd8c-46/1aeb2a1f05712015e4e7edcee840134c">
+        </div>
+        <div class="body">
+          <p class="scene"><b>场景：</b>在纽约办起的传统中式婚宴：红包与礼金台、签名绸、逐桌敬酒、宾客起哄的闹婚游戏。
+            李安本人客串宾客，一句"你正见识到五千年性压抑的结果"点破这场集体狂欢。
+            婚宴不是为了新郎新娘的口味，而是为了家族的面子与亲朋的人情——个体意志被仪式裹挟。
+            获柏林电影节金熊奖、金马奖最佳影片。</p>
+          <div class="playerbox" data-bvid="BV1654y1G7JB" data-fallback="https://www.bilibili.com/video/BV1654y1G7JB">
+            <p class="hint">片段：婚宴高潮段落解析（含原片画面与解说，约 4 分钟）。点击按钮在页内播放；受限则用"新窗口观看"。</p>
+          </div>
+          <div class="btnrow">
+            <button class="play" type="button">播放片段</button>
+            <a class="watch" href="https://www.bilibili.com/video/BV1654y1G7JB" target="_blank" rel="noopener">新窗口观看</a>
+            <a class="watch" href="https://v.qq.com/x/cover/tk2ju2qdj1zvgvo/y32028x8ysp.html" target="_blank" rel="noopener">备用源 · 腾讯视频</a>
+          </div>
+          <p class="note">片段含对婚闹习俗的批评性解读，正适合课堂讨论"热闹"与"个体感受"的张力。</p>
+        </div>
+      </article>
+      <!-- film west2 -->
+      <article class="film west">
+        <div class="head">
+          <span class="side">西方片段</span>
+          <h3>《当哈利遇到莎莉》When Harry Met Sally</h3>
+          <p class="info">罗伯·莱纳 · 1989 · 美国 · 餐厅点餐与名场面段落</p>
+        </div>
+        <div class="still">
+          <span class="ph">剧 照</span>
+          <img alt="《当哈利遇到莎莉》剧照：餐厅内两位主角对话" data-image="https://agent.qianwen.com/service/925cf08d-6475-4f/56b7fd8ae27f69fc2b2dd882756b4449">
+        </div>
+        <div class="body">
+          <p class="scene"><b>场景：</b>莎莉点餐像下达一份精确的个人规格：沙拉的油醋汁"放旁边"、苹果派要加热、
+            冰淇淋"不要放上面、放旁边"、草莓味换掉香草味……哈利吐槽"你点个三明治要花一个半小时"。
+            随后是影史著名的餐厅一幕与邻桌老太太那句"I'll have what she's having."。
+            每个细节都在说：<b>我的餐盘，我的选择。</b></p>
+          <div class="playerbox" data-ytid="6pQgbEEFPq0" data-fallback="https://www.youtube.com/watch?v=6pQgbEEFPq0">
+            <p class="hint">片段：官方剪辑 "I'll Have What She's Having"（YouTube，英语）。若无法加载，请用"新窗口观看"。</p>
+          </div>
+          <div class="btnrow">
+            <button class="play" type="button">播放片段</button>
+            <a class="watch" href="https://www.youtube.com/watch?v=6pQgbEEFPq0" target="_blank" rel="noopener">新窗口观看</a>
+            <a class="watch" href="https://www.bilibili.com/video/BV1Bd4y1h7EK" target="_blank" rel="noopener">备用源 · B站影片解读</a>
+          </div>
+          <p class="note">点餐规格台词可作课堂朗读材料，体会"个人偏好被认真对待"的文化默认。</p>
+        </div>
+      </article>
+    </div>
+    <div class="values">
+      <h4>价值观对照 · 这一组看什么</h4>
+      <ul>
+        <li><span class="dim">决策权</span><span>中式宴席由主人/长辈点菜布菜，照顾客人是礼；西式各点各的，连孩子也自己选菜（微信公众平台，2025）。</span></li>
+        <li><span class="dim">面子与人情</span><span>《喜宴》的酒席是家族社会关系的展演，"不跟别人做个交代，还结什么婚"；个体偏好让位于群体期待。</span></li>
+        <li><span class="dim">边界与尊重</span><span>莎莉的"挑剔"在西方语境里是被服务业正常接纳的个人权利；放到合餐桌上则可能显得"不合群"。</span></li>
+        <li><span class="dim">共同点</span><span>两种餐桌都在表达爱：一个用"为你夹菜"，一个用"记得你的口味"。差异在表达方式，不在情感浓度。</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: matrix -->
+<section id="matrix">
+  <div class="wrap">
+    <p class="kicker">VALUE MATRIX · 价值观对照</p>
+    <h2>从银幕回到理论：六个维度</h2>
+    <p class="sub">综合光明网访谈（2024）、人民论坛网（2020）与跨文化消费行为分析（2024）等资料整理；
+      电影片段为各维度的具象例证。</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>维度</th><th>中式 · 共盘传统</th><th>西式 · 分餐传统</th><th>对应片段</th></tr></thead>
+        <tbody>
+          <tr><td class="dim">用餐形式</td><td class="cnc">圆桌合餐，菜肴居中共享</td><td class="wc">长桌分餐，按位逐道上菜</td><td>饮食男女 / 巴贝特之宴</td></tr>
+          <tr><td class="dim">价值取向</td><td class="cnc">集体主义、群体和谐、"以和为贵"</td><td class="wc">个体主义、独立自主、个人空间</td><td>喜宴 / 当哈利遇到莎莉</td></tr>
+          <tr><td class="dim">情感媒介</td><td class="cnc">夹菜、敬酒、布菜：以共享传递亲密</td><td class="wc">记住偏好、尊重选择：以边界表达尊重</td><td>饮食男女 / 当哈利遇到莎莉</td></tr>
+          <tr><td class="dim">秩序观念</td><td class="cnc">长幼尊卑有序，主位与敬酒次序</td><td class="wc">席位平等、流程标准化，服务契约清晰</td><td>喜宴 / 巴贝特之宴</td></tr>
+          <tr><td class="dim">待客逻辑</td><td class="cnc">主人请客买单，"人情"往复</td><td class="wc">各付各账（AA）常见，权责分明</td><td>喜宴 / 当哈利遇到莎莉</td></tr>
+          <tr><td class="dim">历史演变</td><td class="cnc">商周分餐 → 唐宋合餐普及</td><td class="wc">罗马/中世纪合餐 → 近代分餐主流</td><td>导览中的刻板印象反思</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION: conclusion -->
+<section id="conclusion">
+  <div class="wrap">
+    <p class="kicker">CONCLUSION · 结论与反思</p>
+    <h2>餐桌没有高下，价值观可以互译</h2>
+    <div class="cards">
+      <div class="card"><h3>差异是取向，不是优劣</h3>
+        <p>共盘把"我们"放在前面，分餐把"我"放在前面；两者都服务于人际联结，只是路径不同。
+        合餐不等于不卫生，分餐不等于冷漠——公筷公勺正是合餐传统内部的现代调适。</p></div>
+      <div class="card"><h3>刻板印象需要历史校准</h3>
+        <p>中国曾是分餐古国，欧洲曾有合餐长桌。把当代习惯当作"自古天性"，会误读文化，也会误读对方。
+        电影提醒我们：餐桌形态随社会结构而变。</p></div>
+      <div class="card"><h3>跨文化相处的实操</h3>
+        <p>与西方朋友共餐：先问偏好、不强行夹菜；与中方长辈共餐：理解布菜是关爱而非控制。
+        把对方的餐桌礼仪翻译成"他在用他的方式表达善意"，冲突就少了一半。</p></div>
+    </div>
+    <p class="caveat">说明：本页电影片段以公开平台嵌入/跳转方式供课堂观摩与评论使用，版权归原作者与平台所有；
+      嵌入播放可能受平台、地区与网络限制，失败时请使用各卡片"新窗口观看/备用源"。
+      文化分析为基于公开资料的定性解读，非量化结论。</p>
+  </div>
+</section>
+
+<!-- SECTION: refs -->
+<section id="refs">
+  <div class="wrap">
+    <p class="kicker">REFERENCES · 参考来源</p>
+    <h2>资料与片段来源</h2>
+    <ol class="refs">
+      <li>光明网《饮食礼仪教育：中国传统文化对外传播的"推手"》（2024-04-28）——合餐/分餐与集体主义、个体独立价值观访谈。<a href="https://health.gmw.cn/2024-04/28/content_37291797.htm" target="_blank" rel="noopener">链接</a></li>
+      <li>人民论坛网《分餐：古已有之的中华饮食文化》（2020-03-30）——中国商周分餐、罗马合餐的历史对照。<a href="https://art.rmlt.com.cn/2020/0330/574545.shtml" target="_blank" rel="noopener">链接</a></li>
+      <li>中国社会科学网《分餐与合餐，饮食文化是如何演变的？》（2020-03-09）——唐宋合餐普及的演变脉络。<a href="https://www.cssn.cn/skgz/bwyc/202209/t20220920_5534341.shtml" target="_blank" rel="noopener">链接</a></li>
+      <li>微信公众平台《分餐VS合餐：饭桌上的"我"与"我们"》（2025-11-13）——个人选择与群体取向的餐桌投射。<a href="https://mp.weixin.qq.com/s?__biz=MzkzNDk0NjUzMQ==&idx=1&mid=2247484223&sn=803ae3bc5572f6bc20f6451a9b5b8ad3" target="_blank" rel="noopener">链接</a></li>
+      <li>微信公众平台《消费者行为学：个体主义与集体主义在中西聚餐中的体现》（2024-11-27）——六维度对照参考。<a href="https://mp.weixin.qq.com/s?__biz=MzkyMjczNzU0NQ==&idx=6&mid=2247569601&sn=5bc93c776069d877d1e994c3cf09c3bc" target="_blank" rel="noopener">链接</a></li>
+      <li>豆瓣影评《【拉片】〈饮食男女〉开场段落赏析》（2021-03-30）——开场蒙太奇与家宴仪式分析。<a href="https://movie.douban.com/review/13355105/" target="_blank" rel="noopener">链接</a></li>
+      <li>1905电影网《饮食男女》资料页——剧情与家宴结构。<a href="https://www.1905.com/mdb/film/49531/info/" target="_blank" rel="noopener">链接</a></li>
+      <li>维基百科 / 豆瓣《巴贝特之宴》（1987）——影片信息、奥斯卡最佳外语片与盛宴菜单。<a href="https://movie.douban.com/subject/1292278/" target="_blank" rel="noopener">链接</a></li>
+      <li>芝加哥大学出版社《Babette's Feast: A Fable for Culinary France》——上菜流程与分餐服务分析。<a href="https://press.uchicago.edu/Misc/Chicago/243230.h" target="_blank" rel="noopener">链接</a></li>
+      <li>微信公众平台《〈喜宴〉：一场以爱为名的文化妥协与和解》（2026-06-06）——面子文化与集体狂欢解读。<a href="https://mp.weixin.qq.com/s?__biz=MzU3MTMzMTU0MQ==&idx=1&mid=2247484172&sn=156e1e90afd8ddbc077de0e4a2c5ca79" target="_blank" rel="noopener">链接</a></li>
+      <li>AnOther Magazine《Lessons We Can Learn From When Harry Met Sally》（2015-12-10）——点餐台词与个人选择文化。<a href="https://www.anothermag.com/design-living/8118/lessons-we-can-learn-from-when-harry-met-sally" target="_blank" rel="noopener">链接</a></li>
+      <li>片段来源：哔哩哔哩 BV1G3411V78K、BV1654y1G7JB、BV1Bd4y1h7EK、巴贝特之宴正版 ep329590；YouTube fcIAtfaLOh8、6pQgbEEFPq0；腾讯视频 h0518eebtth、y32028x8ysp。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- SECTION: footer -->
+<footer>
+  <div class="wrap">张越扬、尚裕兴 · Shared Plate vs Individual Plate · 网页展示版 · 2026-11</div>
+</footer>
+
+<script>
+/* SECTION: media-inject */
+(function(){
+  var imgs=document.querySelectorAll('img[data-image]');
+  for(var i=0;i<imgs.length;i++){
+    (function(img){
+      img.addEventListener('error',function(){img.style.display='none';});
+      img.src=img.dataset.image;
+    })(imgs[i]);
+  }
+  var boxes=document.querySelectorAll('.playerbox');
+  for(var j=0;j<boxes.length;j++){
+    (function(box){
+      var btn=box.parentElement.querySelector('button.play');
+      if(!btn)return;
+      btn.addEventListener('click',function(){
+        if(box.querySelector('iframe'))return;
+        var src='';
+        if(box.dataset.bvid){src='https://player.bilibili.com/player.html?bvid='+encodeURIComponent(box.dataset.bvid)+'&autoplay=0&danmaku=0';}
+        else if(box.dataset.ytid){src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(box.dataset.ytid);}
+        if(!src)return;
+        var f=document.createElement('iframe');
+        f.setAttribute('allowfullscreen','true');
+        f.setAttribute('allow','autoplay; encrypted-media; fullscreen');
+        f.setAttribute('title','电影片段播放器');
+        f.src=src;
+        var hint=box.querySelector('.hint');
+        if(hint)hint.style.display='none';
+        box.appendChild(f);
+        btn.textContent='已在下方加载播放器';
+        btn.disabled=true;
+        btn.style.opacity=.6;
+      });
+    })(boxes[j]);
+  }
+})();
+</script>
+</body>
+</html>
